@@ -16,7 +16,7 @@
       content="Mark Otto, Jacob Thornton, and Bootstrap contributors"
     />
     <meta name="generator" content="Hugo 0.112.5" />
-    <title>Edit page</title>
+    <title>details page</title>
 
     <link href="../css/bootstrap.min.css" rel="stylesheet" />
 
@@ -241,7 +241,7 @@
           </li>
 
           <li>
-            <a href="./user/add.html" class="nav-link text-white">
+            <a href="./user/add" class="nav-link text-white">
               <svg class="bi pe-none me-2" width="16" height="16">
                 <use xlink:href="#people-circle" />
               </svg>
@@ -309,12 +309,12 @@
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/">Home</a></li>
             <li class="breadcrumb-item active" aria-current="page">
-              Ali Hassan
+             <%= user.firstName %> <%= user.lastName %>
             </li>
           </ol>
 
           <p class=" ">
-            <span class="fw-medium fs-6">Id :</span> 6487021520bcf1af6319484c
+            <span class="fw-medium fs-6">Id :</span> <%= user._id %>
           </p>
         </nav>
 
@@ -325,38 +325,38 @@
           <thead>
             <tr>
               <th scope="col">First Name</th>
-              <th class="fw-normal" scope="col">Ali</th>
+              <th class="fw-normal" scope="col">  <%= user.firstName %></th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <th scope="row">Last Name</th>
-              <td>Hassan</td>
+              <td><%= user.lastName %></td>
             </tr>
 
             <tr>
               <th scope="row">Telephone</th>
-              <td>Test1</td>
+              <td><%= user.telephone %></td>
             </tr>
 
             <tr>
               <th scope="row">Email</th>
-              <td>ali7assan@gmail.com</td>
+              <td><%= user.email %></td>
             </tr>
 
             <tr>
               <th scope="row">Gender</th>
-              <td>Test3</td>
+              <td><%= user.gender %></td>
             </tr>
 
             <tr>
               <th scope="row">Age</th>
-              <td>Test4</td>
+              <td><%= user.age %></td>
             </tr>
 
             <tr>
               <th scope="row">Country</th>
-              <td>Test5</td>
+              <td><%= user.country %></td>
             </tr>
 
             <tr>

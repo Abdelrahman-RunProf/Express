@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
-// const userModel = require("./modals/users");
+const userModel = require("./modals/users");
 const port = 3000;
 
 app.use(express.static('public'))
@@ -13,42 +13,61 @@ mongoose.connect('mongodb+srv://abdelrahmanabdou52_db_user:TrIg0l2gVHD8t02T@clus
     })).catch((error) => console.log(error))
 
 
-// auto reload
-const path = require("path");
-const livereload = require("livereload");
-const liveReloadServer = livereload.createServer();
-liveReloadServer.watch(path.join(__dirname, 'public'));
 
-
-const connectLivereload = require("connect-livereload");
-app.use(connectLivereload());
-
-liveReloadServer.server.once("connection", () => {
-    setTimeout(() => {
-        liveReloadServer.refresh("/");
-    }, 100);
-});
-// auto reload ends
-app.get('/', (req, res) => {
-
-    res.render('index')
-
+app.get('/', async (req, res) => {
+    try {
+        const users = await userModel.find();
+        res.render('index', { users });
+    } catch (error) {
+        console.log('error from get', error);
+        res.render('index', { users: [] });
+    }
 });
 
-app.get('/add.html', (req, res) => {
+
+
+app.get('/user/add', (req, res) => {
     res.render('user/add')
 });
-app.get('/user/edit', (req, res) => {
+app.get('/user/edit/:id', (req, res) => {
     res.render('user/edit')
 });
 app.get('/user/search', (req, res) => {
     res.render('user/search')
 });
-app.get('/user/view', (req, res) => {
-    res.render('user/view')
+app.get('/user/:id', async (req, res) => {
+    const id = req.params.id;
+    try {
+        const user = await userModel.findById(id);
+        console.log(user, 'user from view');
+        res.render('user/view', { user });
+    } catch (error) {
+        console.log(error);
+        res.render('user/view', { user: null });
+    }
 });
 
+app.post("/user/add", (req, res) => {
+    const { firstName, lastName, email, telephone, age, country, gender } = req.body;
+    const userModelData = new userModel({
+        firstName,
+        lastName,
+        email,
+        telephone,
+        age,
+        country,
+        gender
+    })
+    userModelData.save()
+        .then(() => {
+            res.redirect('/')
+            console.log("user added successfully")
+        })
+        .catch((error) => {
+            console.log(error)
+        })
 
+})
 app.use((req, res) => {
     res.status(404).render("404")
 });

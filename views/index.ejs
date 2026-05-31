@@ -240,7 +240,7 @@
           </li>
 
           <li>
-            <a href="./user/add.html" class="nav-link text-white">
+            <a href="./user/add" class="nav-link text-white">
               <svg class="bi pe-none me-2" width="16" height="16">
                 <use xlink:href="#people-circle" />
               </svg>
@@ -311,25 +311,28 @@
               <th scope="col">Gender</th>
               <th scope="col">Country</th>
               <th scope="col">Age</th>
-              <th scope="col">Last updated</th>
+              <th scope="col">email</th>
+              <th scope="col">telephone</th>
               <th scope="col">Action</th>
             </tr>
           </thead>
           <tbody>
+          <% users.forEach((user, index) => { %>
             <tr>
-              <th scope="row">1</th>
-              <td>Ali Hassan	</td>
-              <td>Male	</td>
-              <td>Egypt</td>
-              <td>30</td>
-              <td>1 days ago              </td>
+              <th scope="row"><%= index %></th>
+              <td><%= user.firstName %> <%= user.lastName %></td>
+              <td><%= user.gender %></td>
+              <td><%= user.country %></td>
+              <td><%= user.age %></td>
+              <td><%= user.email %></td>
+              <td><%= user.telephone %></td>
               <td>
                 <a
                   data-bs-toggle="tooltip"
                   data-bs-title="View details"
                   data-bs-placement="top"
                   class="btn btn-primary btn-sm"
-                  href="./user/view.html"
+                  href="./user/<%= user._id %> "
                   ><i class="bi bi-eye"></i
                 ></a>
 
@@ -338,7 +341,7 @@
                   data-bs-title="Edit user"
                   data-bs-placement="top"
                   class="btn btn-primary btn-sm"
-                  href="./user/edit.html"
+                  href="./user/edit/<%= user._id %> "
                 >
                   <i class="bi bi-pencil"></i>
                 </a>
@@ -347,12 +350,14 @@
                   data-bs-title="Delete user"
                   data-bs-placement="top"
                   class="btn btn-danger btn-sm"
+                  onclick="deleteUser('<%= user._id %>')"
                 >
                   <i class="bi bi-trash"></i>
                 </button>
               </td>
             </tr>
-      
+            <% }); %>
+<!--       
             <tr>
               <th scope="row">2</th>
               <td>Layla Sayed	</td>
@@ -367,7 +372,7 @@
                   data-bs-title="View details"
                   data-bs-placement="top"
                   class="btn btn-primary btn-sm"
-                  href="./user/view.html"
+                  href="./user/view"
                   ><i class="bi bi-eye"></i
                 ></a>
 
@@ -376,7 +381,7 @@
                   data-bs-title="Edit user"
                   data-bs-placement="top"
                   class="btn btn-primary btn-sm"
-                  href="./user/edit.html"
+                  href="./user/edit"
                 >
                   <i class="bi bi-pencil"></i>
                 </a>
@@ -391,204 +396,7 @@
               </td>
             </tr>
       
-      
-            <tr>
-              <th scope="row">3</th>
-              <td>Zeyad Mohsen	</td>
-              <td>Male</td>
-              <td>Morocco</td>
-              <td>11</td>
-              <td>3 days ago
-              </td>
-              <td>
-                <a
-                  data-bs-toggle="tooltip"
-                  data-bs-title="View details"
-                  data-bs-placement="top"
-                  class="btn btn-primary btn-sm"
-                  href="./user/view.html"
-                  ><i class="bi bi-eye"></i
-                ></a>
-
-                <a
-                  data-bs-toggle="tooltip"
-                  data-bs-title="Edit user"
-                  data-bs-placement="top"
-                  class="btn btn-primary btn-sm"
-                  href="./user/edit.html"
-                >
-                  <i class="bi bi-pencil"></i>
-                </a>
-                <button
-                  data-bs-toggle="tooltip"
-                  data-bs-title="Delete user"
-                  data-bs-placement="top"
-                  class="btn btn-danger btn-sm"
-                >
-                  <i class="bi bi-trash"></i>
-                </button>
-              </td>
-            </tr>
-      
-      
-
-            <tr>
-              <th scope="row">4</th>
-              <td>Nour Ahmed	</td>
-              <td>Female</td>
-              <td>Ukraine</td>
-              <td>10</td>
-              <td>2 days ago
-              </td>
-              <td>
-                <a
-                  data-bs-toggle="tooltip"
-                  data-bs-title="View details"
-                  data-bs-placement="top"
-                  class="btn btn-primary btn-sm"
-                  href="./user/view.html"
-                  ><i class="bi bi-eye"></i
-                ></a>
-
-                <a
-                  data-bs-toggle="tooltip"
-                  data-bs-title="Edit user"
-                  data-bs-placement="top"
-                  class="btn btn-primary btn-sm"
-                  href="./user/edit.html"
-                >
-                  <i class="bi bi-pencil"></i>
-                </a>
-                <button
-                  data-bs-toggle="tooltip"
-                  data-bs-title="Delete user"
-                  data-bs-placement="top"
-                  class="btn btn-danger btn-sm"
-                >
-                  <i class="bi bi-trash"></i>
-                </button>
-              </td>
-            </tr>
-      
-      
-            <tr>
-              <th scope="row">5</th>
-              <td>Fatma Ali	</td>
-              <td>Female</td>
-              <td>France</td>
-              <td>35</td>
-              <td>2 days ago
-              </td>
-              <td>
-                <a
-                  data-bs-toggle="tooltip"
-                  data-bs-title="View details"
-                  data-bs-placement="top"
-                  class="btn btn-primary btn-sm"
-                  href="./user/view.html"
-                  ><i class="bi bi-eye"></i
-                ></a>
-
-                <a
-                  data-bs-toggle="tooltip"
-                  data-bs-title="Edit user"
-                  data-bs-placement="top"
-                  class="btn btn-primary btn-sm"
-                  href="./user/edit.html"
-                >
-                  <i class="bi bi-pencil"></i>
-                </a>
-                <button
-                  data-bs-toggle="tooltip"
-                  data-bs-title="Delete user"
-                  data-bs-placement="top"
-                  class="btn btn-danger btn-sm"
-                >
-                  <i class="bi bi-trash"></i>
-                </button>
-              </td>
-            </tr>
-      
-      
-
-
-            <tr>
-              <th scope="row">6</th>
-              <td>Ali Hassan	</td>
-              <td>Male	</td>
-              <td>Egypt</td>
-              <td>30</td>
-              <td>1 days ago              </td>
-              <td>
-                <a
-                  data-bs-toggle="tooltip"
-                  data-bs-title="View details"
-                  data-bs-placement="top"
-                  class="btn btn-primary btn-sm"
-                  href="./user/view.html"
-                  ><i class="bi bi-eye"></i
-                ></a>
-
-                <a
-                  data-bs-toggle="tooltip"
-                  data-bs-title="Edit user"
-                  data-bs-placement="top"
-                  class="btn btn-primary btn-sm"
-                  href="./user/edit.html"
-                >
-                  <i class="bi bi-pencil"></i>
-                </a>
-                <button
-                  data-bs-toggle="tooltip"
-                  data-bs-title="Delete user"
-                  data-bs-placement="top"
-                  class="btn btn-danger btn-sm"
-                >
-                  <i class="bi bi-trash"></i>
-                </button>
-              </td>
-            </tr>
-      
-
-
-            <tr>
-              <th scope="row">7</th>
-              <td>Layla Sayed	</td>
-       
-              <td>Female</td>
-              <td>Saudi Arabia	</td>
-              <td>15</td>
-              <td>2 days ago              </td>
-              <td>
-                <a
-                  data-bs-toggle="tooltip"
-                  data-bs-title="View details"
-                  data-bs-placement="top"
-                  class="btn btn-primary btn-sm"
-                  href="./user/view.html"
-                  ><i class="bi bi-eye"></i
-                ></a>
-
-                <a
-                  data-bs-toggle="tooltip"
-                  data-bs-title="Edit user"
-                  data-bs-placement="top"
-                  class="btn btn-primary btn-sm"
-                  href="./user/edit.html"
-                >
-                  <i class="bi bi-pencil"></i>
-                </a>
-                <button
-                  data-bs-toggle="tooltip"
-                  data-bs-title="Delete user"
-                  data-bs-placement="top"
-                  class="btn btn-danger btn-sm"
-                >
-                  <i class="bi bi-trash"></i>
-                </button>
-              </td>
-            </tr>
-      
+       -->
       
       
           </tbody>
