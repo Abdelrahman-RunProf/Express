@@ -361,12 +361,12 @@
 
             <tr>
               <th scope="row">Created on</th>
-              <td>Test6</td>
+              <td><%= moment(user.createdAt).format('YYYY-MM-DD h:mm a');  %> </td>
             </tr>
 
             <tr>
               <th scope="row">Last Update</th>
-              <td>Test7</td>
+              <td><%= moment(user.updatedAt).format('YYYY-MM-DD h:mm a');  %></td>
             </tr>
           </tbody>
         </table>
@@ -376,5 +376,8 @@
 
     <script src="../js/sidebars.js"></script>
     <script src="../js/main.js"></script>
+     <script src="../js/main.js"></script>
+
+
   </body>
 </html>

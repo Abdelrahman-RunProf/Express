@@ -11,5 +11,5 @@ const userSchema = new Schema({
     country: String,
     gender: String
 
-});
+}, { timestamps: true });
 module.exports = userSchema;

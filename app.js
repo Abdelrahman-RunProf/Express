@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const app = express();
 const userModel = require("./modals/users");
 const port = 3000;
-
+const moment = require('moment'); // require
 app.use(express.static('public'))
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: true }));
@@ -17,7 +17,7 @@ mongoose.connect('mongodb+srv://abdelrahmanabdou52_db_user:TrIg0l2gVHD8t02T@clus
 app.get('/', async (req, res) => {
     try {
         const users = await userModel.find();
-        res.render('index', { users });
+        res.render('index', { users, moment });
     } catch (error) {
         console.log('error from get', error);
         res.render('index', { users: [] });
@@ -40,7 +40,7 @@ app.get('/user/:id', async (req, res) => {
     try {
         const user = await userModel.findById(id);
         console.log(user, 'user from view');
-        res.render('user/view', { user });
+        res.render('user/view', { user, moment });
     } catch (error) {
         console.log(error);
         res.render('user/view', { user: null });
