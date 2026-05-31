@@ -8,18 +8,29 @@ app.use(express.urlencoded({ extended: true }));
 const port = 3000;
 // models 
 const userModel = require("./modals/users");
-app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/views/hello.html');
-});
 
 
 app.post('/', (req, res) => {
-    console.log(req.body)
+    console.log(req.body);
 
     const userDataModal = new userModel({ userName: req.body.username });
-    console.log(req.body)
-    userDataModal.save().then(() => res.send(`<h1>Thank you for submitting your name, ${req.body.username}</h1>`)).catch((error) => console.log(error))
-
+    userDataModal.save()
+        .then(() => {
+            res.redirect('/?username=' + encodeURIComponent(req.body.username));
+        })
+        .catch((error) => {
+            console.log(error);
+            res.status(500).send("Error saving to database");
+        });
+});
+app.get('/', async (req, res) => {
+    const users = await userModel.find().then((data) => {
+        return data;
+    }).catch((error) => {
+        console.log(error);
+        return [];
+    });
+    res.render('hello', { username: req.query.username || null, users });
 });
 
 // const user = new userModel({userName:"John"});
