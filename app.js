@@ -69,9 +69,8 @@ app.get("/view/:id", (req, res) => {
 
 // POST Requst
 app.post("/user/add.html", (req, res) => {
-    const user = new User(req.body);
-    user
-        .save()
+    User
+        .create(req.body)
         .then(() => {
             res.redirect("/");
         })
@@ -86,6 +85,19 @@ app.delete("/edit/:id", (req, res) => {
         .then((result) => {
             res.redirect("/");
             console.log(result)
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+});
+
+// PUT Requst
+app.put("/edit/:id", (req, res) => {
+    console.log(req.body)
+    User.findByIdAndUpdate(req.params.id, req.body)
+
+        .then(() => {
+            res.redirect("/");
         })
         .catch((err) => {
             console.log(err);

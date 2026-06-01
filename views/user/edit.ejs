@@ -57,7 +57,7 @@
 
 
 
-        <form class="mx-0 row gx-3 gy-4 mt-2">
+        <form class="mx-0 row gx-3 gy-4 mt-2" method="post" action="/edit/<%= obj._id %>?_method=PUT">
           <div class="col-md-6">
             <label for="inputfirstName4" class="form-label">First Name:</label>
             <input
@@ -65,6 +65,7 @@
               type="text"
               class="form-control"
               id="inputfirstName4"
+              name="fireName"
             />
           </div>
           <div class="col-md-6">
@@ -73,6 +74,7 @@
               value="<%= obj.lastName %>"
               type="text"
               class="form-control"
+              name="lastName"
               id="inputlastName4"
             />
           </div>
